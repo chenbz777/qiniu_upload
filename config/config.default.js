@@ -23,9 +23,23 @@ module.exports = appInfo => {
     // myAppName: 'egg',
   };
 
+  // 关闭crsf,开启跨域
+  config.security = {
+    csrf: {
+      enable: false,
+    },
+    domainWhiteList: [],
+  };
+  // 允许跨域方法
+  config.cors = {
+    origin: '*',
+    allowMethods: 'GET, PUT,  POST, DELETE, PATCH',
+  };
+
   // 在 config 文件中启用 file 模式
   config.multipart = {
     mode: 'file',
+    fileSize: '5mb',
   };
 
   return {
