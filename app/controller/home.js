@@ -20,12 +20,12 @@ class HomeController extends Controller {
 
     const file = ctx.request.files[0];
 
-    const url = await this.qiNiuUpload(file);
+    const res = await this.qiNiuUpload(file);
 
     ctx.body = {
       code: 200,
       msg: '上传成功',
-      data: url,
+      data: res,
     };
   }
 
@@ -72,7 +72,7 @@ class HomeController extends Controller {
 
           const url = `${IMGHOST}/${ret.key}`;
 
-          resolve(url);
+          resolve({ fileName, alt: filename, url });
         } else {
           // 上传失败， 处理返回代码
           // console.log(err);
