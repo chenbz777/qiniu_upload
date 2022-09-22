@@ -45,4 +45,4 @@ npm run dev
 
 ## 镜像地址
 
-[🌈 镜像地址](
+[🌈 镜像地址](https://hub.docker.com/r/chenbz777/qiniu_upload)
