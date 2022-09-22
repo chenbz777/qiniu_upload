@@ -6,7 +6,17 @@ const Controller = require('egg').Controller;
 const qiniu = require('qiniu');
 
 class HomeController extends Controller {
+
   async index() {
+    const { ctx } = this;
+
+    ctx.body = {
+      code: 200,
+      msg: '七牛云文件上传',
+    };
+  }
+
+  async upload() {
     const { ctx } = this;
 
     if (!ctx.request.files.length) {
@@ -21,6 +31,9 @@ class HomeController extends Controller {
     const file = ctx.request.files[0];
 
     const res = await this.qiNiuUpload(file);
+
+    // 需要删除临时文件
+    await ctx.cleanupRequestFiles();
 
     ctx.body = {
       code: 200,
